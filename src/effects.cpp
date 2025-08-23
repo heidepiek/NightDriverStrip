@@ -103,6 +103,7 @@
     #include "effects/matrix/PatternAnimatedGIF.h"
     #include "effects/matrix/PatternFireworks.h"
     #include "effects/matrix/PatternWarp.h"
+    #include "effects/matrix/PatternBoxes.h"
 
   #if ENABLE_WIFI
     #include "effects/matrix/PatternSubscribers.h"
@@ -383,7 +384,8 @@ void LoadEffectFactories()
             Effect<PatternMunch>(),
             Effect<PatternMaze>(),
             Effect<PatternFireworks>(),
-            Effect<PatternWarp>()
+            Effect<PatternWarp>(),
+            Effect<PatternBoxes>()
         );
     #endif
 

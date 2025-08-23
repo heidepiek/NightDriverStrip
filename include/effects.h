@@ -167,6 +167,7 @@ enum EffectId
 	idMatrixPDPCMX                          = 163,
 	idMatrixFireworks						= 164,
 	idMatrixWarp                            = 165,
+	idMatrixRandomBoxes						= 166,
 
 	// Hexagon effects
 	idHexagonOuterRing                      = 201
