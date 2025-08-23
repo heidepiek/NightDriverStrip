@@ -165,6 +165,7 @@ enum EffectId
 	idMatrixPDPGrid                         = 161,
 	idMatrixAudioSpike                      = 162,
 	idMatrixPDPCMX                          = 163,
+	idMatrixFireworks						= 164,
 
 	// Hexagon effects
 	idHexagonOuterRing                      = 201
