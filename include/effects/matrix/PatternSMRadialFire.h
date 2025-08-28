@@ -4,34 +4,12 @@
 
 // Derived from https://editor.soulmatelights.com/gallery/1570-radialfire
 
-class PatternSMRadialFire : public EffectWithId<idMatrixSMRadialFire>
+class PatternSMRadialFire : public EffectWithId<PatternSMRadialFire>
 {
   public:
 
-    PatternSMRadialFire() : EffectWithId<idMatrixSMRadialFire>("RadialFire") {}
-    PatternSMRadialFire(const JsonObjectConst &jsonObject) : EffectWithId<idMatrixSMRadialFire>(jsonObject) {}
-
-  private:
-
-    static auto constexpr C_X = (MATRIX_WIDTH / 2);
-    static auto constexpr C_Y = (MATRIX_HEIGHT / 2);
-
-    std::unique_ptr<uint8_t[]> XY_angle_buf;
-    std::unique_ptr<uint8_t[]> XY_radius_buf;
-
-    bool Init(std::vector<std::shared_ptr<GFXBase>>& gfx) override
-    {
-        XY_angle_buf = make_unique_psram<uint8_t[]>(MATRIX_WIDTH * MATRIX_HEIGHT);
-        XY_radius_buf = make_unique_psram<uint8_t[]>(MATRIX_WIDTH * MATRIX_HEIGHT);
-        for (int8_t x = -C_X; x < C_X + (MATRIX_WIDTH % 2); x++) {
-            for (int8_t y = -C_Y; y < C_Y + (MATRIX_HEIGHT % 2); y++) {
-                int idx = (x + C_X) + MATRIX_WIDTH * (y + C_Y);
-                XY_angle_buf[idx] = 128 * (atan2(y, x) / PI);
-                XY_radius_buf[idx] = hypot(x, y); // thanks Sutaburosu
-            }
-        }
-        return LEDStripEffect::Init(gfx);
-    }
+    PatternSMRadialFire() : EffectWithId<PatternSMRadialFire>("RadialFire") {}
+    PatternSMRadialFire(const JsonObjectConst &jsonObject) : EffectWithId<PatternSMRadialFire>(jsonObject) {}
 
     void Start() override
     {
@@ -42,15 +20,18 @@ class PatternSMRadialFire : public EffectWithId<idMatrixSMRadialFire>
     {
         static uint8_t scaleX = 16;
         static uint8_t scaleY = 1;
-
         static uint8_t speed = 24;
         static uint32_t t;
         t += speed;
-        for (uint8_t x = 0; x < MATRIX_WIDTH; x++) {
-            for (uint8_t y = 0; y < MATRIX_HEIGHT; y++) {
-                int idx = x + MATRIX_WIDTH * y;
-                uint8_t angle = XY_angle_buf[idx];
-                uint8_t radius = XY_radius_buf[idx];
+
+        const auto& rMap = LEDMatrixGFX::getPolarMap();
+
+        for (uint8_t x = 0; x < MATRIX_WIDTH; x++)
+        {
+            for (uint8_t y = 0; y < MATRIX_HEIGHT; y++)
+            {
+                uint8_t angle = rMap[x][y].angle;
+                uint8_t radius = rMap[x][y].unscaled_radius; // Use the unscaled radius
                 int16_t Bri = inoise8(angle * scaleX, (radius * scaleY) - t) - radius * (255 / MATRIX_HEIGHT);
                 uint8_t Col = Bri;
 
