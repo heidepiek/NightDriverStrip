@@ -121,7 +121,7 @@ static std::map<const String, EmbeddedFile, std::less<const String>, psram_alloc
  * @brief This class implements the Weather Data effect
  *
  */
-class PatternWeather : public EffectWithId<PatternWeather>
+class PatternWeather : public EffectWithId<idMatrixWeather>
 {
   private:
 
@@ -438,14 +438,14 @@ public:
      * @brief Construct a new Pattern Weather object
      *
      */
-    PatternWeather() : EffectWithId<PatternWeather>("Weather") {}
+    PatternWeather() : EffectWithId<idMatrixWeather>("Weather") {}
 
     /**
      * @brief Construct a new Pattern Weather object
      *
      * @param jsonObject Configuration JSON Object
      */
-    PatternWeather(const JsonObjectConst&  jsonObject) : EffectWithId<PatternWeather>(jsonObject) {}
+    PatternWeather(const JsonObjectConst&  jsonObject) : EffectWithId<idMatrixWeather>(jsonObject) {}
 
     /**
      * @brief Destroy the Pattern Weather object

@@ -128,7 +128,7 @@ public:
 
 constexpr auto CRC_LENGTH = (std::max(MATRIX_HEIGHT, MATRIX_WIDTH) * 4 + 1);
 
-class PatternLife : public EffectWithId<PatternLife>
+class PatternLife : public EffectWithId<idMatrixLife>
 {
 private:
     std::unique_ptr<Cell [][MATRIX_HEIGHT]> world;
@@ -147,8 +147,8 @@ private:
         // Note: placing the world in PSRAM may slow this effect down, but it's currently running
         //       fast enough (30+ fps) that we can afford to use it
 
-        world = make_unique_psram<Cell[][MATRIX_HEIGHT]>(MATRIX_WIDTH);
-        checksums = make_unique_psram<uint32_t[]>(CRC_LENGTH);
+        world.reset(psram_allocator<Cell [MATRIX_HEIGHT]>().allocate(MATRIX_WIDTH)) ;
+        checksums.reset(psram_allocator<uint32_t>().allocate(CRC_LENGTH));
 
         return true;
     }
@@ -235,8 +235,8 @@ private:
 
 public:
 
-    PatternLife() : EffectWithId<PatternLife>("Life") {}
-    PatternLife(const JsonObjectConst& jsonObject) : EffectWithId<PatternLife>(jsonObject) {}
+    PatternLife() : EffectWithId<idMatrixLife>("Life") {}
+    PatternLife(const JsonObjectConst& jsonObject) : EffectWithId<idMatrixLife>(jsonObject) {}
 
     void Reset()
     {

@@ -330,7 +330,7 @@ void setup()
     #if ENABLE_ESPNOW
         WiFi.mode(WIFI_STA);  // or WIFI_AP if applicable
 
-        if (esp_now_init() != ESP_OK)
+        if (esp_now_init() != ESP_OK) 
             throw std::runtime_error("Error initializing ESP-NOW");
         // Register receive callback function
         esp_now_register_recv_cb(onReceiveESPNOW);
@@ -351,20 +351,11 @@ void setup()
             if (!WriteWiFiConfig(WiFi_ssid, WiFi_password))
                 debugW("Could not even write defaults to WiFi Credentials");
         }
-        else
-	{
-	    // Either we found a config record, but it was empty
-	    // (e.g. firmware reset) OR user credentials do not match
-	    // what was retrieved, indicating user has reconfigured
-	    // network SSID or credential.
-	    // String equality seems legal between cszstring and String.
-	    if (WiFi_ssid.length() == 0 ||
-                (WiFi_ssid != cszSSID || WiFi_password != cszPassword) )
-            {
-                WiFi_ssid     = cszSSID;
-                WiFi_password = cszPassword;
-            }
-	}
+        else if (WiFi_ssid.length() == 0)
+        {
+            WiFi_ssid     = cszSSID;
+            WiFi_password = cszPassword;
+        }
 
         // This chip alone is special-cased by Improv, so we pull it
         // from build flags. CONFIG_IDF_TARGET will be "esp32s3".

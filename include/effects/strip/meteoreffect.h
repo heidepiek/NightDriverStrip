@@ -159,7 +159,7 @@ class MeteorChannel
     }
 };
 
-class MeteorEffect : public EffectWithId<MeteorEffect>
+class MeteorEffect : public EffectWithId<idStripMeteor>
 {
   private:
 
@@ -174,7 +174,7 @@ class MeteorEffect : public EffectWithId<MeteorEffect>
   public:
 
     MeteorEffect(int cMeteors = 4, uint size = 4, uint decay = 3, float minSpeed = 0.2, float maxSpeed = 0.2)
-        : EffectWithId<MeteorEffect>("Color Meteors"),
+        : EffectWithId<idStripMeteor>("Color Meteors"),
           _Meteors(),
           _cMeteors(cMeteors),
           _meteorSize(size),
@@ -185,7 +185,7 @@ class MeteorEffect : public EffectWithId<MeteorEffect>
     }
 
     MeteorEffect(const JsonObjectConst& jsonObject)
-        : EffectWithId<MeteorEffect>(jsonObject),
+        : EffectWithId<idStripMeteor>(jsonObject),
           _Meteors(),
           _cMeteors(jsonObject["mto"]),
           _meteorSize(jsonObject[PTY_SIZE]),

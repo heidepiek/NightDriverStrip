@@ -376,7 +376,7 @@ class RingParticle : public FadingColoredObject
 
 
 #if ENABLE_AUDIO
-class ColorBeatWithFlash : public BeatEffectBase, public ParticleSystem<RingParticle>, public EffectWithId<ColorBeatWithFlash>
+class ColorBeatWithFlash : public BeatEffectBase, public ParticleSystem<RingParticle>, public EffectWithId<idStripColorBeatWithFlash>
 {
   private:
 
@@ -388,14 +388,14 @@ class ColorBeatWithFlash : public BeatEffectBase, public ParticleSystem<RingPart
     ColorBeatWithFlash(const String & strName)
       : BeatEffectBase(),
         ParticleSystem<RingParticle>(),
-        EffectWithId<ColorBeatWithFlash>(strName)
+        EffectWithId<idStripColorBeatWithFlash>(strName)
     {
     }
 
     ColorBeatWithFlash(const JsonObjectConst& jsonObject)
       : BeatEffectBase(),
         ParticleSystem<RingParticle>(),
-        EffectWithId<ColorBeatWithFlash>(jsonObject)
+        EffectWithId<idStripColorBeatWithFlash>(jsonObject)
     {
     }
 
@@ -439,7 +439,7 @@ class ColorBeatWithFlash : public BeatEffectBase, public ParticleSystem<RingPart
     }
 };
 
-class ColorBeatOverRed : public EffectWithId<ColorBeatOverRed>, public BeatEffectBase, public ParticleSystem<RingParticle>
+class ColorBeatOverRed : public EffectWithId<idStripColorBeatOverRed>, public BeatEffectBase, public ParticleSystem<RingParticle>
 {
   private:
 
@@ -449,14 +449,14 @@ class ColorBeatOverRed : public EffectWithId<ColorBeatOverRed>, public BeatEffec
   public:
 
     ColorBeatOverRed(const String & strName)
-      : EffectWithId<ColorBeatOverRed>(strName),
+      : EffectWithId<idStripColorBeatOverRed>(strName),
         BeatEffectBase(1.75, 0.2),
         ParticleSystem<RingParticle>()
     {
     }
 
     ColorBeatOverRed(const JsonObjectConst& jsonObject)
-      : EffectWithId<ColorBeatOverRed>(jsonObject),
+      : EffectWithId<idStripColorBeatOverRed>(jsonObject),
         BeatEffectBase(1.75, 0.2),
         ParticleSystem<RingParticle>()
     {
@@ -701,7 +701,7 @@ class HotWhiteRingParticle : public FadingObject
 #if ENABLE_AUDIO
 
 
-class MoltenGlassOnVioletBkgnd : public EffectWithId<MoltenGlassOnVioletBkgnd>, public BeatEffectBase, public ParticleSystem<SpinningPaletteRingParticle>
+class MoltenGlassOnVioletBkgnd : public EffectWithId<idStripMoltenGlassOnVioletBkgnd>, public BeatEffectBase, public ParticleSystem<SpinningPaletteRingParticle>
 {
   private:
 
@@ -712,7 +712,7 @@ class MoltenGlassOnVioletBkgnd : public EffectWithId<MoltenGlassOnVioletBkgnd>, 
   public:
 
     MoltenGlassOnVioletBkgnd(const String & strName, const CRGBPalette16 & Palette)
-      : EffectWithId<MoltenGlassOnVioletBkgnd>(strName),
+      : EffectWithId<idStripMoltenGlassOnVioletBkgnd>(strName),
         BeatEffectBase(1.50, 0.05),
         ParticleSystem<SpinningPaletteRingParticle>(),
         _Palette(Palette)
@@ -720,7 +720,7 @@ class MoltenGlassOnVioletBkgnd : public EffectWithId<MoltenGlassOnVioletBkgnd>, 
     }
 
     MoltenGlassOnVioletBkgnd(const JsonObjectConst& jsonObject)
-      : EffectWithId<MoltenGlassOnVioletBkgnd>(jsonObject),
+      : EffectWithId<idStripMoltenGlassOnVioletBkgnd>(jsonObject),
         BeatEffectBase(1.50, 0.05),
         ParticleSystem<SpinningPaletteRingParticle>(),
         _Palette(jsonObject[PTY_PALETTE].as<CRGBPalette16>())
@@ -793,7 +793,7 @@ class MoltenGlassOnVioletBkgnd : public EffectWithId<MoltenGlassOnVioletBkgnd>, 
     }
 };
 
-class NewMoltenGlassOnVioletBkgnd : public EffectWithId<NewMoltenGlassOnVioletBkgnd>, public BeatEffectBase, public ParticleSystem<SpinningPaletteRingParticle>
+class NewMoltenGlassOnVioletBkgnd : public EffectWithId<idStripNewMoltenGlassOnVioletBkgnd>, public BeatEffectBase, public ParticleSystem<SpinningPaletteRingParticle>
 {
   private:
 
@@ -804,7 +804,7 @@ class NewMoltenGlassOnVioletBkgnd : public EffectWithId<NewMoltenGlassOnVioletBk
   public:
 
     NewMoltenGlassOnVioletBkgnd(const String & strName, const CRGBPalette16 & Palette)
-      : EffectWithId<NewMoltenGlassOnVioletBkgnd>(strName),
+      : EffectWithId<idStripNewMoltenGlassOnVioletBkgnd>(strName),
         BeatEffectBase(1.0, 0.25 ),
         ParticleSystem<SpinningPaletteRingParticle>(),
         _Palette(Palette)
@@ -812,7 +812,7 @@ class NewMoltenGlassOnVioletBkgnd : public EffectWithId<NewMoltenGlassOnVioletBk
     }
 
     NewMoltenGlassOnVioletBkgnd(const JsonObjectConst& jsonObject)
-      : EffectWithId<NewMoltenGlassOnVioletBkgnd>(jsonObject),
+      : EffectWithId<idStripNewMoltenGlassOnVioletBkgnd>(jsonObject),
         BeatEffectBase(1.0, 0.25 ),
         ParticleSystem<SpinningPaletteRingParticle>(),
         _Palette(jsonObject[PTY_PALETTE].as<CRGBPalette16>())
@@ -884,7 +884,7 @@ class NewMoltenGlassOnVioletBkgnd : public EffectWithId<NewMoltenGlassOnVioletBk
     }
 };
 
-class SparklySpinningMusicEffect : public EffectWithId<SparklySpinningMusicEffect>, public BeatEffectBase, public ParticleSystem<SpinningPaletteRingParticle>
+class SparklySpinningMusicEffect : public EffectWithId<idStripSparklySpinningMusic>, public BeatEffectBase, public ParticleSystem<SpinningPaletteRingParticle>
 {
   private:
 
@@ -895,12 +895,12 @@ class SparklySpinningMusicEffect : public EffectWithId<SparklySpinningMusicEffec
   public:
 
     SparklySpinningMusicEffect(const String & strName, const CRGBPalette16 & Palette)
-      : EffectWithId<SparklySpinningMusicEffect>(strName), BeatEffectBase(), ParticleSystem<SpinningPaletteRingParticle>(), _Palette(Palette)
+      : EffectWithId<idStripSparklySpinningMusic>(strName), BeatEffectBase(), ParticleSystem<SpinningPaletteRingParticle>(), _Palette(Palette)
     {
     }
 
     SparklySpinningMusicEffect(const JsonObjectConst& jsonObject)
-      : EffectWithId<SparklySpinningMusicEffect>(jsonObject),
+      : EffectWithId<idStripSparklySpinningMusic>(jsonObject),
         BeatEffectBase(),
         ParticleSystem<SpinningPaletteRingParticle>(),
         _Palette(jsonObject[PTY_PALETTE].as<CRGBPalette16>())
@@ -949,7 +949,7 @@ class SparklySpinningMusicEffect : public EffectWithId<SparklySpinningMusicEffec
     }
 };
 
-class MusicalHotWhiteInsulatorEffect : public EffectWithId<MusicalHotWhiteInsulatorEffect>, public BeatEffectBase, public ParticleSystem<HotWhiteRingParticle>
+class MusicalHotWhiteInsulatorEffect : public EffectWithId<idStripMusicalHotWhiteInsulator>, public BeatEffectBase, public ParticleSystem<HotWhiteRingParticle>
 {
   private:
 
@@ -958,9 +958,9 @@ class MusicalHotWhiteInsulatorEffect : public EffectWithId<MusicalHotWhiteInsula
 
   public:
 
-    MusicalHotWhiteInsulatorEffect(const String & strName) : EffectWithId<MusicalHotWhiteInsulatorEffect>(strName), BeatEffectBase(), ParticleSystem<HotWhiteRingParticle>() {}
+    MusicalHotWhiteInsulatorEffect(const String & strName) : EffectWithId<idStripMusicalHotWhiteInsulator>(strName), BeatEffectBase(), ParticleSystem<HotWhiteRingParticle>() {}
 
-    MusicalHotWhiteInsulatorEffect(const JsonObjectConst& jsonObject) : EffectWithId<MusicalHotWhiteInsulatorEffect>(jsonObject), BeatEffectBase(), ParticleSystem<HotWhiteRingParticle>() {}
+    MusicalHotWhiteInsulatorEffect(const JsonObjectConst& jsonObject) : EffectWithId<idStripMusicalHotWhiteInsulator>(jsonObject), BeatEffectBase(), ParticleSystem<HotWhiteRingParticle>() {}
 
     virtual void HandleBeat(bool bMajor, float elapsed, float span) override
     {

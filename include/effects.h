@@ -31,7 +31,6 @@
 //---------------------------------------------------------------------------
 #pragma once
 
-<<<<<<< HEAD
 // Each effect class needs to have exactly one associated effect number defined in
 // the below list. The effect numbers and their respective classes are linked in the
 // effect factory definitions that are created in the LoadEffectFactories()
@@ -193,10 +192,6 @@ enum StarId
 };
 
 // Legacy EFFECT_* macro aliases were removed after migration to enum-based ids.
-=======
-using EffectId = uint32_t;
-using FactoryId = uint64_t;
->>>>>>> upstream/main
 
 // Some common JSON properties to prevent typos. By project convention JSON properties
 // at the LEDStripEffect level have a length of 2 characters, and JSON properties

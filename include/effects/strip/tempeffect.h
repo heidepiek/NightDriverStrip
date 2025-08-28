@@ -35,7 +35,7 @@
 
 #include <deque>
 
-class SimpleInsulatorBeatEffect : public EffectWithId<SimpleInsulatorBeatEffect>, public BeatEffectBase
+class SimpleInsulatorBeatEffect : public EffectWithId<idStripSimpleInsulatorBeat>, public BeatEffectBase
 {
   protected:
 
@@ -67,13 +67,13 @@ class SimpleInsulatorBeatEffect : public EffectWithId<SimpleInsulatorBeatEffect>
     using BeatEffectBase::BeatEffectBase;
 
     SimpleInsulatorBeatEffect(const String & strName)
-      : EffectWithId<SimpleInsulatorBeatEffect>(strName), BeatEffectBase(0.5, 0.01) {}
+      : EffectWithId<idStripSimpleInsulatorBeat>(strName), BeatEffectBase(0.5, 0.01) {}
 
     SimpleInsulatorBeatEffect(const JsonObjectConst& jsonObject)
-      : EffectWithId<SimpleInsulatorBeatEffect>(jsonObject), BeatEffectBase(0.5, 0.01) {}
+      : EffectWithId<idStripSimpleInsulatorBeat>(jsonObject), BeatEffectBase(0.5, 0.01) {}
 };
 
-class SimpleInsulatorBeatEffect2 : public EffectWithId<SimpleInsulatorBeatEffect2>, public BeatEffectBase
+class SimpleInsulatorBeatEffect2 : public EffectWithId<idStripSimpleInsulatorBeat2>, public BeatEffectBase
 {
   protected:
 
@@ -103,13 +103,13 @@ class SimpleInsulatorBeatEffect2 : public EffectWithId<SimpleInsulatorBeatEffect
   public:
 
     SimpleInsulatorBeatEffect2(const String & strName)
-      : EffectWithId<SimpleInsulatorBeatEffect2>(strName), BeatEffectBase() {}
+      : EffectWithId<idStripSimpleInsulatorBeat2>(strName), BeatEffectBase() {}
 
     SimpleInsulatorBeatEffect2(const JsonObjectConst& jsonObject)
-      : EffectWithId<SimpleInsulatorBeatEffect2>(jsonObject), BeatEffectBase() {}
+      : EffectWithId<idStripSimpleInsulatorBeat2>(jsonObject), BeatEffectBase() {}
 };
 
-class VUInsulatorsEffect : public EffectWithId<VUInsulatorsEffect>
+class VUInsulatorsEffect : public EffectWithId<idStripVUInsulators>
 {
   private:
 
@@ -117,7 +117,7 @@ class VUInsulatorsEffect : public EffectWithId<VUInsulatorsEffect>
 
   public:
 
-    using EffectWithId<VUInsulatorsEffect>::EffectWithId;
+    using EffectWithId<idStripVUInsulators>::EffectWithId;
 
     void DrawVUPixels(int i, int fadeBy, const CRGBPalette16 & palette)
     {

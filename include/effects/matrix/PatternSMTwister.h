@@ -6,7 +6,7 @@
 // High color barber-pole with varying Y-height stripes.
 // Quite hypnotic.
 
-class PatternSMTwister : public EffectWithId<PatternSMTwister>
+class PatternSMTwister : public EffectWithId<idMatrixSMTwister>
 {
   private:
 
@@ -34,8 +34,8 @@ class PatternSMTwister : public EffectWithId<PatternSMTwister>
 
   public:
 
-    PatternSMTwister() : EffectWithId<PatternSMTwister>("Twister") {}
-    PatternSMTwister(const JsonObjectConst &jsonObject) : EffectWithId<PatternSMTwister>(jsonObject) {}
+    PatternSMTwister() : EffectWithId<idMatrixSMTwister>("Twister") {}
+    PatternSMTwister(const JsonObjectConst &jsonObject) : EffectWithId<idMatrixSMTwister>(jsonObject) {}
 
     void Start() override
     {
@@ -45,7 +45,7 @@ class PatternSMTwister : public EffectWithId<PatternSMTwister>
     void Draw() override
     {
         uint16_t a = millis() / 10;
-        FastLED.clear();
+        LEDS.clear();
 
         for (uint16_t i = 0; i < MATRIX_HEIGHT; i++)
         {

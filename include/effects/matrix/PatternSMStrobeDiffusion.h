@@ -13,9 +13,9 @@
 // magic for blur2d().
 
 #if ENABLE_AUDIO
-class PatternSMStrobeDiffusion : public BeatEffectBase, public EffectWithId<PatternSMStrobeDiffusion>
+class PatternSMStrobeDiffusion : public BeatEffectBase, public EffectWithId<idMatrixSMStrobeDiffusion>
 #else
-class PatternSMStrobeDiffusion : public EffectWithId<PatternSMStrobeDiffusion>
+class PatternSMStrobeDiffusion : public EffectWithId<idMatrixSMStrobeDiffusion>
 #endif
 {
   private:
@@ -35,13 +35,13 @@ class PatternSMStrobeDiffusion : public EffectWithId<PatternSMStrobeDiffusion>
 #endif
 
   public:
-
+  
     PatternSMStrobeDiffusion()
       :
 #if ENABLE_AUDIO
         BeatEffectBase(1.50, 0.05),
 #endif
-        EffectWithId<PatternSMStrobeDiffusion>("Diffusion")
+        EffectWithId<idMatrixSMStrobeDiffusion>("Diffusion")
     {
     }
 
@@ -50,7 +50,7 @@ class PatternSMStrobeDiffusion : public EffectWithId<PatternSMStrobeDiffusion>
 #if ENABLE_AUDIO
         BeatEffectBase(1.50, 0.05),
 #endif
-        EffectWithId<PatternSMStrobeDiffusion>(jsonObject)
+        EffectWithId<idMatrixSMStrobeDiffusion>(jsonObject)
     {
     }
 
@@ -98,6 +98,13 @@ class PatternSMStrobeDiffusion : public EffectWithId<PatternSMStrobeDiffusion>
             // randomly fill in the top row
             noise3d[x][top_line_offset] = (posX == x) && (step % 3 == 0);
         }
+    }
+
+    // функция получения цвета пикселя в матрице по его координатам
+    [[nodiscard]] CRGB getPixColorXY(uint8_t x, uint8_t y) const
+    {
+        // Just don't think about what this does to prefetch and prediction...
+        return g()->leds[XY(x, y)];
     }
 
     void Draw() override
@@ -185,11 +192,11 @@ class PatternSMStrobeDiffusion : public EffectWithId<PatternSMStrobeDiffusion>
             {
                 if (dir)
                 { // <==
-                    g()->drawPixel(x, y * 3 + DELTA, g()->getPixel(x, y * 3 + DELTA));
+                    g()->drawPixel(x, y * 3 + DELTA, getPixColorXY(x, y * 3 + DELTA));
                 }
                 else
                 { // ==>
-                    g()->drawPixel(MATRIX_WIDTH - x, y * 3 + DELTA, g()->getPixel(MATRIX_WIDTH - x, y * 3 + DELTA));
+                    g()->drawPixel(MATRIX_WIDTH - x, y * 3 + DELTA, getPixColorXY(MATRIX_WIDTH - x, y * 3 + DELTA));
                 }
             }
             dir = !dir;

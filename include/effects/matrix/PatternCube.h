@@ -77,7 +77,7 @@
 //
 // On displays that are 2X as wide as tall, two cubes will be drawn
 
-class PatternCube : public EffectWithId<PatternCube>
+class PatternCube : public EffectWithId<idMatrixCube>
 {
   private:
 
@@ -215,13 +215,13 @@ class PatternCube : public EffectWithId<PatternCube>
     }
 
   public:
-
-    PatternCube() : EffectWithId<PatternCube>("Cubes")
+  
+    PatternCube() : EffectWithId<idMatrixCube>("Cubes")
     {
       construct();
     }
 
-    PatternCube(const JsonObjectConst& jsonObject) : EffectWithId<PatternCube>(jsonObject)
+    PatternCube(const JsonObjectConst& jsonObject) : EffectWithId<idMatrixCube>(jsonObject)
     {
       construct();
     }

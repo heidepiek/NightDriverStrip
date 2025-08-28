@@ -58,7 +58,7 @@
 #ifndef PatternPulse_H
 #define PatternPulse_H
 
-class PatternPulse : public EffectWithId<PatternPulse>
+class PatternPulse : public EffectWithId<idMatrixPulse>
 {
   private:
 
@@ -72,8 +72,8 @@ class PatternPulse : public EffectWithId<PatternPulse>
 
   public:
 
-    PatternPulse() : EffectWithId<PatternPulse>("Pulse") {}
-    PatternPulse(const JsonObjectConst& jsonObject) : EffectWithId<PatternPulse>(jsonObject) {}
+    PatternPulse() : EffectWithId<idMatrixPulse>("Pulse") {}
+    PatternPulse(const JsonObjectConst& jsonObject) : EffectWithId<idMatrixPulse>(jsonObject) {}
 
     void Draw() override
     {
@@ -116,7 +116,7 @@ class PatternPulse : public EffectWithId<PatternPulse>
         // effects.standardNoiseSmearing();
     }
 };
-class PatternPulsar : public BeatEffectBase, public EffectWithId<PatternPulsar> {
+class PatternPulsar : public BeatEffectBase, public EffectWithId<idMatrixPulsar> {
   private:
     struct PulsePop
     {
@@ -137,13 +137,13 @@ class PatternPulsar : public BeatEffectBase, public EffectWithId<PatternPulsar> 
   public:
     PatternPulsar() :
         BeatEffectBase(1.5, 0.25 ),
-        EffectWithId<PatternPulsar>("Pulsars")
+        EffectWithId<idMatrixPulsar>("Pulsars")
     {
     }
 
     PatternPulsar(const JsonObjectConst& jsonObject) :
         BeatEffectBase(1.5, 0.25 ),
-        EffectWithId<PatternPulsar>(jsonObject)
+        EffectWithId<idMatrixPulsar>(jsonObject)
     {
     }
 

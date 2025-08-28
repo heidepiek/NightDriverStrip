@@ -44,6 +44,11 @@ class Star : public MovingFadingPaletteObject, public ObjectSize
 {
   public:
 
+    static int GetStarTypeNumber()
+    {
+        return idStar;
+    }
+
     virtual float GetStarSize()
     {
         return _objectSize;
@@ -60,6 +65,11 @@ class RandomPaletteColorStar : public MovingFadingPaletteObject, public ObjectSi
 {
   public:
 
+    static int GetStarTypeNumber()
+    {
+    return idStarRandomPaletteColor;
+    }
+
     virtual float GetStarSize()
     {
         return _objectSize;
@@ -75,6 +85,11 @@ class RandomPaletteColorStar : public MovingFadingPaletteObject, public ObjectSi
 class LongLifeSparkleStar : public MovingFadingPaletteObject, public ObjectSize
 {
   public:
+
+    static int GetStarTypeNumber()
+    {
+        return idStarLongLifeSparkle;
+    }
 
     virtual float GetStarSize()
     {
@@ -97,6 +112,11 @@ class ColorStar : public MovingFadingColoredObject, public ObjectSize
 {
   public:
 
+    static int GetStarTypeNumber()
+    {
+        return idStarColor;
+    }
+
     virtual float GetStarSize()
     {
         return _objectSize;
@@ -112,6 +132,11 @@ class ColorStar : public MovingFadingColoredObject, public ObjectSize
 class QuietStar : public RandomPaletteColorStar
 {
   public:
+
+    static int GetStarTypeNumber()
+    {
+        return idStarQuiet;
+    }
 
     QuietStar(const CRGBPalette16 & palette, TBlendType blendType = NOBLEND, float maxSpeed = 10.0, float starSize = 1)
       : RandomPaletteColorStar(palette, blendType, maxSpeed, starSize)
@@ -134,6 +159,11 @@ class MusicStar : public Star
     {
     }
 
+    static int GetStarTypeNumber()
+    {
+        return idStarMusic;
+    }
+
     virtual float PreignitionTime() const      { return 0.0f;  }
     virtual float IgnitionTime()    const      { return 0.00f; }
     virtual float HoldTime()        const      { return 0.00f; }
@@ -152,6 +182,11 @@ class MusicPulseStar : public Star
     }
 
     virtual ~MusicPulseStar() {}
+
+    static int GetStarTypeNumber()
+    {
+        return idStarMusicPulse;
+    }
 
     virtual float PreignitionTime() const { return 0.00f;  }
     virtual float IgnitionTime()    const { return 0.00f; }
@@ -179,6 +214,11 @@ class BubblyStar : public Star
         lastHue = fmod(lastHue, 256);
     }
 
+    static int GetStarTypeNumber()
+    {
+        return idStarBubbly;
+    }
+
     float GetStarSize() override
     {
         float x = Age()/TotalLifetime();
@@ -200,6 +240,11 @@ class FlashStar : public Star
 {
   public:
 
+    static int GetStarTypeNumber()
+    {
+        return idStarFlash;
+    }
+
     float PreignitionTime() const override  { return 0.00f; }
     float IgnitionTime()    const override  { return 0.10f; }
     float HoldTime()        const override  { return 0.10f; }
@@ -218,6 +263,11 @@ class ColorCycleStar : public Star
       : Star(palette, blendType, maxSpeed)
     {
         _brightness = random_range(128,255);
+    }
+
+    static int GetStarTypeNumber()
+    {
+        return idStarColorCycle;
     }
 
     virtual CRGB Render(TBlendType blend)
@@ -263,6 +313,11 @@ class MultiColorStar : public Star
     ~MultiColorStar() override
     {}
 
+    static int GetStarTypeNumber()
+    {
+    return idStarMultiColor;
+    }
+
     float PreignitionTime() const override { return 2.0f; }
     float IgnitionTime()    const override { return 0.0f; }
     float HoldTime()        const override { return 2.00f;}
@@ -285,6 +340,11 @@ class ChristmasLightStar : public Star
     ~ChristmasLightStar() override
     {}
 
+    static int GetStarTypeNumber()
+    {
+        return idStarChristmas;
+    }
+
     float PreignitionTime() const override { return 0.20f; }
     float IgnitionTime()    const override { return 0.00f; }
     float HoldTime()        const override { return 6.0f;  }
@@ -305,6 +365,11 @@ class HotWhiteStar : public Star
 
     ~HotWhiteStar() override
     {}
+
+    static int GetStarTypeNumber()
+    {
+        return idStarHotWhite;
+    }
 
     float PreignitionTime() const override { return 0.00f;  }
     float IgnitionTime()    const override { return 0.20f;  }
@@ -350,9 +415,11 @@ template <typename ObjectType> class BeatStarterEffect : public BeatEffectBase
 
 */
 
+// StarryNightEffect template
+//
+// Generates up to
 
-template <typename StarType, typename TEffect>
-class StarEffectBase : public EffectWithId<StarEffectBase<StarType, TEffect>>
+template <typename StarType> class StarryNightEffect : public EffectWithId<idStripStarryNight>
 {
   protected:
 
@@ -368,16 +435,16 @@ class StarEffectBase : public EffectWithId<StarEffectBase<StarType, TEffect>>
 
   public:
 
-    StarEffectBase(const String & strName,
-                   const CRGBPalette16& palette,
-                   float probability = 1.0,
-                   float starSize = 1.0,
-                   TBlendType blendType = LINEARBLEND,
-                   float maxSpeed = 100.0,
-                   float blurFactor = 0.0,
-                   float musicFactor = 1.0,
-                   CRGB skyColor = CRGB::Black)
-      : EffectWithId<StarEffectBase<StarType, TEffect>>(strName),
+    StarryNightEffect(const String & strName,
+                      const CRGBPalette16& palette,
+                      float probability = 1.0,
+                      float starSize = 1.0,
+                      TBlendType blendType = LINEARBLEND,
+                      float maxSpeed = 100.0,
+                      float blurFactor = 0.0,
+                      float musicFactor = 1.0,
+                      CRGB skyColor = CRGB::Black)
+      : EffectWithId<idStripStarryNight>(strName),
         _palette(palette),
         _newStarProbability(probability),
         _starSize(starSize),
@@ -389,8 +456,8 @@ class StarEffectBase : public EffectWithId<StarEffectBase<StarType, TEffect>>
     {
     }
 
-    StarEffectBase(const JsonObjectConst& jsonObject)
-      : EffectWithId<StarEffectBase<StarType, TEffect>>(jsonObject),
+    StarryNightEffect<StarType>(const JsonObjectConst& jsonObject)
+      : EffectWithId<idStripStarryNight>(jsonObject),
         _palette(jsonObject[PTY_PALETTE].as<CRGBPalette16>()),
         _newStarProbability(jsonObject["spb"]),
         _starSize(jsonObject[PTY_SIZE]),
@@ -410,6 +477,7 @@ class StarEffectBase : public EffectWithId<StarEffectBase<StarType, TEffect>>
         LEDStripEffect::SerializeToJSON(root);
 
         jsonDoc[PTY_PALETTE] = _palette;
+        jsonDoc[PTY_STARTYPENR] = StarType::GetStarTypeNumber();
         jsonDoc["spb"] = _newStarProbability;
         jsonDoc[PTY_SIZE] = _starSize;
         jsonDoc[PTY_BLEND] = to_value(_blendType);
@@ -450,7 +518,7 @@ class StarEffectBase : public EffectWithId<StarEffectBase<StarType, TEffect>>
                 {
                     StarType newstar(_palette, _blendType, _maxSpeed * _musicFactor, _starSize);
                     // This always starts stars on even pixel boundaries so they look like the desired width if not moving
-                    newstar._iPos = (int) random_range(0U, LEDStripEffect::_cLEDs - 1 - starWidth);
+                    newstar._iPos = (int) random_range(0U, _cLEDs-1-starWidth);
                     _allParticles.push_back(newstar);
                 }
             }
@@ -480,8 +548,8 @@ class StarEffectBase : public EffectWithId<StarEffectBase<StarType, TEffect>>
         }
         else
         {
-            LEDStripEffect::g()->blurRows(LEDStripEffect::g()->leds, MATRIX_WIDTH, MATRIX_HEIGHT, 0, _blurFactor * 255);
-            LEDStripEffect::fadeAllChannelsToBlackBy(55 * (2.0 - g_Analyzer.VURatioFade()));
+            g()->blurRows(g()->leds, MATRIX_WIDTH, MATRIX_HEIGHT, 0, _blurFactor * 255);
+            fadeAllChannelsToBlackBy(55 * (2.0 - g_Analyzer.VURatioFade()));
         }
 
         for(auto i = _allParticles.begin(); i != _allParticles.end(); i++)
@@ -489,35 +557,28 @@ class StarEffectBase : public EffectWithId<StarEffectBase<StarType, TEffect>>
             i->UpdatePosition();
             float fPos = i->_iPos;
             CRGB c = i->ObjectColor();
-            LEDStripEffect::setPixelsFOnAllChannels(fPos - i->_objectSize / 2.0, i->_objectSize, c, true);
+            setPixelsFOnAllChannels(fPos - i->_objectSize / 2.0, i->_objectSize, c, true);
         }
     }
 };
 
-template <typename StarType>
-class StarEffect : public StarEffectBase<StarType, StarEffect<StarType>>
-{
-  public:
-    using StarEffectBase<StarType, StarEffect<StarType>>::StarEffectBase;
-};
-
-template <typename StarType> class BlurStarEffect : public StarEffectBase<StarType, BlurStarEffect<StarType>>
+template <typename StarType> class BlurStarEffect : public StarryNightEffect<StarType>
 {
   public:
 
     BlurStarEffect(const CRGBPalette16 & palette, float probability = 0.2, size_t starSize = 1, TBlendType blendType = LINEARBLEND, float maxSpeed = 20.0)
-        : StarEffectBase<StarType, BlurStarEffect<StarType>>(palette, probability, starSize, blendType, maxSpeed)
+        : StarryNightEffect<StarType>(palette, probability, starSize, blendType, maxSpeed)
     {
     }
 
     BlurStarEffect(const JsonObjectConst& jsonObject)
-        : StarEffectBase<StarType, BlurStarEffect<StarType>>(jsonObject)
+        : StarryNightEffect<StarType>(jsonObject)
     {
     }
 
     virtual void Clear()
     {
-        StarEffect<StarType>::setAll(32,0,0);
+        StarryNightEffect<StarType>::setAll(32,0,0);
     }
 };
 
@@ -525,7 +586,7 @@ template <typename StarType> class BlurStarEffect : public StarEffectBase<StarTy
 //
 // Twinkles random colored dots on and off
 
-class TwinkleStarEffect : public EffectWithId<TwinkleStarEffect>
+class TwinkleStarEffect : public EffectWithId<idStripTwinkleStar>
 {
   private:
 
@@ -534,8 +595,8 @@ class TwinkleStarEffect : public EffectWithId<TwinkleStarEffect>
 
   public:
 
-    TwinkleStarEffect() : EffectWithId<TwinkleStarEffect>("Twinkle Star") {}
-    TwinkleStarEffect(const JsonObjectConst& jsonObject) : EffectWithId<TwinkleStarEffect>(jsonObject) {}
+    TwinkleStarEffect() : EffectWithId<idStripTwinkleStar>("Twinkle Star") {}
+    TwinkleStarEffect(const JsonObjectConst& jsonObject) : EffectWithId<idStripTwinkleStar>(jsonObject) {}
 
     bool Init(std::vector<std::shared_ptr<GFXBase>>& gfx) override
     {

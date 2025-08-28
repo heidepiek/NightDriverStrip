@@ -38,7 +38,7 @@ struct Circle
 
 const int NUMBER_OF_CIRCLES = 20;
 
-class PatternSMAmberRain : public EffectWithId<PatternSMAmberRain>
+class PatternSMAmberRain : public EffectWithId<idMatrixSMAmberRain>
 {
   private:
 
@@ -85,8 +85,8 @@ class PatternSMAmberRain : public EffectWithId<PatternSMAmberRain>
 
   public:
 
-    PatternSMAmberRain() : EffectWithId<PatternSMAmberRain>("Color Rain") {}
-    PatternSMAmberRain(const JsonObjectConst &jsonObject) : EffectWithId<PatternSMAmberRain>(jsonObject) {}
+    PatternSMAmberRain() : EffectWithId<idMatrixSMAmberRain>("Color Rain") {}
+    PatternSMAmberRain(const JsonObjectConst &jsonObject) : EffectWithId<idMatrixSMAmberRain>(jsonObject) {}
 
     void Start() override
     {

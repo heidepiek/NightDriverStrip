@@ -48,7 +48,7 @@ static constexpr auto ballColors = to_array(
     CRGB::Indigo,
 });
 
-class BouncingBallEffect : public EffectWithId<BouncingBallEffect>
+class BouncingBallEffect : public EffectWithId<idStripBouncingBall>
 {
   private:
 
@@ -75,7 +75,7 @@ class BouncingBallEffect : public EffectWithId<BouncingBallEffect>
   public:
 
     BouncingBallEffect(size_t ballCount = 3, bool bMirrored = true, bool bErase = false, int ballSize = 5)
-        : EffectWithId<BouncingBallEffect>("Bouncing Balls"),
+        : EffectWithId<idStripBouncingBall>("Bouncing Balls"),
           _cBalls(ballCount),
           _cBallSize(ballSize),
           _bMirrored(bMirrored),
@@ -84,7 +84,7 @@ class BouncingBallEffect : public EffectWithId<BouncingBallEffect>
     }
 
     BouncingBallEffect(const JsonObjectConst&  jsonObject)
-        : EffectWithId<BouncingBallEffect>(jsonObject),
+        : EffectWithId<idStripBouncingBall>(jsonObject),
           _cBalls(jsonObject["blc"]),
           _cBallSize(jsonObject["bls"]),
           _bMirrored(jsonObject[PTY_MIRORRED]),

@@ -54,7 +54,7 @@
 #ifndef PatternSpin_H
 #define PatternSpin_H
 
-class PatternSpin : public EffectWithId<PatternSpin>
+class PatternSpin : public EffectWithId<idMatrixSpin>
 {
   private:
 
@@ -72,9 +72,9 @@ class PatternSpin : public EffectWithId<PatternSpin>
 
   public:
 
-    PatternSpin() : EffectWithId<PatternSpin>("Spin") {}
-    PatternSpin(String friendlyName) : EffectWithId<PatternSpin>(friendlyName) {}
-    PatternSpin(const JsonObjectConst& jsonObject) : EffectWithId<PatternSpin>(jsonObject) {}
+    PatternSpin() : EffectWithId<idMatrixSpin>("Spin") {}
+    PatternSpin(String friendlyName) : EffectWithId<idMatrixSpin>(friendlyName) {}
+    PatternSpin(const JsonObjectConst& jsonObject) : EffectWithId<idMatrixSpin>(jsonObject) {}
 
     void Start() override
     {

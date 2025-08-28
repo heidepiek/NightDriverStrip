@@ -58,7 +58,7 @@
 #ifndef PatternWave_H
 #define PatternWave_H
 
-class PatternWave : public EffectWithId<PatternWave>
+class PatternWave : public EffectWithId<idMatrixWave>
 {
   private:
 
@@ -87,12 +87,12 @@ class PatternWave : public EffectWithId<PatternWave>
 
 public:
 
-    PatternWave() : EffectWithId<PatternWave>("Wave")
+    PatternWave() : EffectWithId<idMatrixWave>("Wave")
     {
         construct();
     }
 
-    PatternWave(const JsonObjectConst& jsonObject) : EffectWithId<PatternWave>(jsonObject)
+    PatternWave(const JsonObjectConst& jsonObject) : EffectWithId<idMatrixWave>(jsonObject)
     {
         construct();
     }

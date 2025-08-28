@@ -43,7 +43,7 @@
 #define DEFAULT_CHANNEL_GUID "9558daa1-eae8-482f-8066-17fa787bc0e4"
 #define DEFAULT_CHANNEL_NAME "Daves Garage"
 
-class PatternSubscribers : public EffectWithId<PatternSubscribers>
+class PatternSubscribers : public EffectWithId<idMatrixSubscribers>
 {
   private:
 
@@ -162,8 +162,8 @@ class PatternSubscribers : public EffectWithId<PatternSubscribers>
 
   public:
 
-    PatternSubscribers() : EffectWithId<PatternSubscribers>("Subs") {}
-    PatternSubscribers(const JsonObjectConst& jsonObject) : EffectWithId<PatternSubscribers>(jsonObject)
+    PatternSubscribers() : EffectWithId<idMatrixSubscribers>("Subs") {}
+    PatternSubscribers(const JsonObjectConst& jsonObject) : EffectWithId<idMatrixSubscribers>(jsonObject)
     {
         if (jsonObject["ycg"].is<String>())
             youtubeChannelGuid = jsonObject["ycg"].as<String>();

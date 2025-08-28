@@ -71,7 +71,7 @@
 //              the illusion of alien characters. This process repeats, moving across and then down
 //              the matrix, simulating scrolling text.
 
-class PatternAlienText : public EffectWithId<PatternAlienText>
+class PatternAlienText : public EffectWithId<idMatrixAlienText>
 {
 private:
 
@@ -84,8 +84,8 @@ private:
 
 public:
 
-  PatternAlienText() : EffectWithId<PatternAlienText>("AlienText") {}
-  PatternAlienText(const JsonObjectConst& jsonObject) : EffectWithId<PatternAlienText>(jsonObject) {}
+  PatternAlienText() : EffectWithId<idMatrixAlienText>("AlienText") {}
+  PatternAlienText(const JsonObjectConst& jsonObject) : EffectWithId<idMatrixAlienText>(jsonObject) {}
 
   void Start() override
   {

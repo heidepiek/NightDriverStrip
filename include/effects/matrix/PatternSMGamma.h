@@ -5,12 +5,12 @@
 // Derived from https://editor.soulmatelights.com/gallery/2091-q24
 // Simple, but interesting rolling depth with a blue lens flare.
 
-class PatternSMGamma : public EffectWithId<PatternSMGamma>
+class PatternSMGamma : public EffectWithId<idMatrixSMGamma>
 {
   public:
-
-    PatternSMGamma() : EffectWithId<PatternSMGamma>("Gamma") {}
-    PatternSMGamma(const JsonObjectConst &jsonObject) : EffectWithId<PatternSMGamma>(jsonObject) {}
+  
+    PatternSMGamma() : EffectWithId<idMatrixSMGamma>("Gamma") {}
+    PatternSMGamma(const JsonObjectConst &jsonObject) : EffectWithId<idMatrixSMGamma>(jsonObject) {}
 
   private:
 
